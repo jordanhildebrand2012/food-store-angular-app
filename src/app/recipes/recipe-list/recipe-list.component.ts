@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Recipe } from '../recipe.model';
 
 @Component({
@@ -7,6 +7,8 @@ import { Recipe } from '../recipe.model';
   styleUrl: './recipe-list.component.css',
 })
 export class RecipeListComponent {
+  @Output() selectedRecipe = new EventEmitter<Recipe>();
+
   recipes: Recipe[] = [
     new Recipe(
       'Test Name',
@@ -29,4 +31,8 @@ export class RecipeListComponent {
       'https://myfoodbook.com.au/sites/default/files/styles/card_c_xw_wp/public/recipe_photo/Sri-Lankin-coconut-%26-cashew-chicken_2412.jpg'
     ),
   ];
+
+  onSelectedRecipe(recipe: Recipe) {
+    this.selectedRecipe.emit(recipe);
+  }
 }

@@ -12,7 +12,9 @@ export class ShoppingListComponent {
     new Ingredient('Ingredient Test 2', 200),
     new Ingredient('Ingredient Test 3', 300),
     new Ingredient('Ingredient Test 4', 400),
-    new Ingredient('Ingredient Test 5', 500),
-    new Ingredient('Ingredient Test 6', 600),
   ];
+
+  onIngredientAdded(ingredient: Ingredient) {
+    this.ingredients.push(ingredient);
+  }
 }
