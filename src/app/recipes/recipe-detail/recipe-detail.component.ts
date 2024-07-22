@@ -1,17 +1,27 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { ShoppingListService } from '../../shopping-list/shopping-list.service';
 import { Ingredient } from '../../shared/ingredient.model';
+import { RecipeService } from '../recipe.service';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
   styleUrl: './recipe-detail.component.css',
 })
-export class RecipeDetailComponent {
-  @Input() selectedRecipe: Recipe;
+export class RecipeDetailComponent implements OnInit {
+  selectedRecipe: Recipe;
 
   shoppingListService = inject(ShoppingListService);
+  recipeService = inject(RecipeService);
+  route = inject(ActivatedRoute);
+
+  ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      this.selectedRecipe = this.recipeService.getRecipe(+params['id']);
+    });
+  }
 
   onAddIngredientsToShoppingList() {
     const ingredients: Ingredient[] = this.selectedRecipe.ingredients.map(
