@@ -1,13 +1,6 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  inject,
-  Output,
-  ViewChild,
-} from '@angular/core';
-import { Ingredient } from '../../shared/ingredient.model';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { ShoppingListService } from '../shopping-list.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -15,15 +8,12 @@ import { ShoppingListService } from '../shopping-list.service';
   styleUrl: './shopping-edit.component.css',
 })
 export class ShoppingEditComponent {
-  @ViewChild('nameInput') ingredientName: ElementRef;
-  @ViewChild('amountInput') ingredientAmount: ElementRef;
-
   shoppingIngredientService = inject(ShoppingListService);
 
-  onAdd() {
+  onAdd(ingredientForm: NgForm) {
     this.shoppingIngredientService.addIngredient(
-      this.ingredientName.nativeElement.value,
-      this.ingredientAmount.nativeElement.value
+      ingredientForm.value.nameInput,
+      ingredientForm.value.amountInput
     );
   }
 }
