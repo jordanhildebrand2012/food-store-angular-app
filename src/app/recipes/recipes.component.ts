@@ -5,6 +5,6 @@ import { RecipeService } from './recipe.service';
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
   styleUrl: './recipes.component.css',
-  providers: [RecipeService],
+  providers: [],
 })
 export class RecipesComponent {}

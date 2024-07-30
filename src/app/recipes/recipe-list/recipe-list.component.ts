@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  inject,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { Subscription } from 'rxjs';
@@ -24,6 +17,8 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.recipeService.recipesChanged.subscribe(
       (recipes: Recipe[]) => {
+        console.log(recipes);
+
         this.recipes = recipes;
       }
     );
