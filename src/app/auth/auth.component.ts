@@ -23,7 +23,7 @@ export class AuthComponent {
     this.isLoading = true;
     let responsePayload$: Observable<SignupResponseData>;
 
-    if (this.isLoading) {
+    if (this.isLogin) {
       responsePayload$ = this.authService.loginUser(
         form.value.email,
         form.value.password
